@@ -19,19 +19,6 @@ public class SysRoleController {
     private SysRoleService sysRoleService;
 
     /**
-     * @description 分页查询所有角色
-     * @param
-     * @return com.zk.base.utils.ResultMessage
-     * @author zengkui
-     * @date 2021/4/10 4:52 下午
-     */
-    @PostMapping("/getAllSysRoleList")
-    public ResultMessage getAllSysRoleList() {
-        List<SysRole> result = sysRoleService.getAllSysRoleList();
-        return ResultMessage.success(result);
-    }
-
-    /**
      * @description 添加角色
      * @param role
      * @return com.zk.base.utils.ResultMessage
@@ -41,19 +28,6 @@ public class SysRoleController {
     @PostMapping("/saveSysRole")
     public ResultMessage saveSysRole(@RequestBody SysRole role) {
         String result = sysRoleService.saveSysRole(role);
-        return ResultMessage.success(result);
-    }
-
-    /**
-     * @description 获取角色详情
-     * @param roleId
-     * @return com.zk.base.utils.ResultMessage
-     * @author zengkui
-     * @date 2021/4/10 4:54 下午
-     */
-    @PostMapping("/getSysRoleInfo")
-    public ResultMessage getSysRoleInfo(Integer roleId) {
-        SysRole result = sysRoleService.getSysRoleInfo(roleId);
         return ResultMessage.success(result);
     }
 
@@ -80,6 +54,32 @@ public class SysRoleController {
     @PostMapping("/deleteSysRole")
     public ResultMessage deleteSysRole(Integer roleId) {
         String result = sysRoleService.deleteSysRole(roleId);
+        return ResultMessage.success(result);
+    }
+
+    /**
+     * @description 分页查询所有角色
+     * @param
+     * @return com.zk.base.utils.ResultMessage
+     * @author zengkui
+     * @date 2021/4/10 4:52 下午
+     */
+    @PostMapping("/getAllSysRoleList")
+    public ResultMessage getAllSysRoleList() {
+        List<SysRole> result = sysRoleService.getAllSysRoleList();
+        return ResultMessage.success(result);
+    }
+
+    /**
+     * @description 获取角色详情
+     * @param roleId
+     * @return com.zk.base.utils.ResultMessage
+     * @author zengkui
+     * @date 2021/4/10 4:54 下午
+     */
+    @PostMapping("/getSysRoleInfo")
+    public ResultMessage getSysRoleInfo(Integer roleId) {
+        SysRole result = sysRoleService.getSysRoleInfo(roleId);
         return ResultMessage.success(result);
     }
 

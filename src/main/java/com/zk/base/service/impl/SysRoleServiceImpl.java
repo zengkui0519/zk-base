@@ -1,8 +1,8 @@
 package com.zk.base.service.impl;
 
-import com.zk.base.mapper.SysUserMapper;
-import com.zk.base.model.SysUser;
-import com.zk.base.service.SysUserService;
+import com.zk.base.mapper.SysRoleMapper;
+import com.zk.base.model.SysRole;
+import com.zk.base.service.SysRoleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -10,42 +10,42 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class SysRoleServiceImpl implements SysUserService {
+public class SysRoleServiceImpl implements SysRoleService {
 
     @Resource
-    private SysUserMapper sysUserMapper;
+    private SysRoleMapper sysRoleMapper;
 
     @Override
-    public String saveSysUser(SysUser user) {
+    public String saveSysRole(SysRole role) {
         Date now = new Date();
-        user.setCreateTime(now);
-        user.setUpdateTime(now);
-        sysUserMapper.addSysUser(user);
+        role.setCreateTime(now);
+        role.setUpdateTime(now);
+        sysRoleMapper.addSysRole(role);
         return "SUCCESS";
     }
 
     @Override
-    public String updateSysUser(SysUser user) {
+    public String updateSysRole(SysRole role) {
         Date now = new Date();
-        user.setUpdateTime(now);
-        sysUserMapper.updateSysUser(user);
+        role.setUpdateTime(now);
+        sysRoleMapper.updateSysRole(role);
         return "SUCCESS";
     }
 
     @Override
-    public String deleteSysUser(Integer userId) {
-        sysUserMapper.deleteSysUserByUserId(userId);
+    public String deleteSysRole(Integer roleId) {
+        sysRoleMapper.deleteSysRoleByRoleId(roleId);
         return "SUCCESS";
     }
 
     @Override
-    public List<SysUser> getSysUserList() {
-        return sysUserMapper.selectSysUserList();
+    public List<SysRole> getAllSysRoleList() {
+        return sysRoleMapper.selectSysRoleList();
     }
 
     @Override
-    public SysUser getSysUserInfo(Integer userId) {
-        return sysUserMapper.selectSysUserByUserId(userId);
+    public SysRole getSysRoleInfo(Integer roleId) {
+        return sysRoleMapper.selectSysRoleByRoleId(roleId);
     }
 
 }

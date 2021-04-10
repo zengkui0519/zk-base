@@ -2,13 +2,17 @@ package com.zk.base.mapper;
 
 import com.zk.base.model.SysRole;
 
+import java.util.List;
+
 public interface SysRoleMapper {
 
-    int deleteRoleByRoleId(Integer roleId);
+    int deleteSysRoleByRoleId(Integer roleId);
 
-    int addRole(SysRole record);
+    int addSysRole(SysRole record);
 
-    int selectRoleList(SysRole record);
+    List<SysRole> selectSysRoleList();
 
-    int updateRole(SysRole record);
+    int updateSysRole(SysRole record);
+
+    SysRole selectSysRoleByRoleId(Integer roleId);
 }

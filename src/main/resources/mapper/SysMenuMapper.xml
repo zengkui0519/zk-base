@@ -1,56 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zk.base.mapper.SysMenuMapper">
-  <resultMap id="BaseResultMap" type="com.zk.base.model.SysMenu">
-    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
-    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
-    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
-    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
-    <result column="sort" jdbcType="INTEGER" property="sort" />
-    <result column="menu_status" jdbcType="INTEGER" property="menuStatus" />
-    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
-    <result column="create_time" jdbcType="DATE" property="createTime" />
-    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
-    <result column="update_time" jdbcType="DATE" property="updateTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    menu_id, menu_name, menu_url, parent_id, sort, menu_status, create_user, create_time, 
-    update_user, update_time
-  </sql>
-  <select id="selectMenuList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_menu
-  </select>
+    <resultMap id="BaseResultMap" type="com.zk.base.model.SysMenu">
+        <id column="menu_id" jdbcType="INTEGER" property="menuId"/>
+        <result column="menu_name" jdbcType="VARCHAR" property="menuName"/>
+        <result column="menu_url" jdbcType="VARCHAR" property="menuUrl"/>
+        <result column="parent_id" jdbcType="VARCHAR" property="parentId"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="menu_status" jdbcType="INTEGER" property="menuStatus"/>
+        <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
+        <result column="create_time" jdbcType="DATE" property="createTime"/>
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
+        <result column="update_time" jdbcType="DATE" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        menu_id, menu_name, menu_url, parent_id, sort, menu_status, create_user, create_time,
+        update_user, update_time
+    </sql>
 
-  <delete id="deleteMenuByMenuId" parameterType="java.lang.Integer">
-    delete from sys_menu
-    where menu_id = #{menuId,jdbcType=INTEGER}
-  </delete>
+    <select id="selectSysMenuList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu
+    </select>
 
-  <insert id="addMenu" parameterType="com.zk.base.model.SysMenu">
-    insert into sys_menu (menu_id, menu_name, menu_url, 
-      parent_id, sort, menu_status, 
-      create_user, create_time, update_user, 
-      update_time)
-    values (#{menuId,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, 
-      #{parentId,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{menuStatus,jdbcType=INTEGER}, 
-      #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateUser,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=DATE})
-  </insert>
+    <select id="selectSysMenuByMenuId" resultType="com.zk.base.model.SysMenu">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu
+        where menu_id = #{menuId}
+    </select>
 
-  <update id="updateMenu" parameterType="com.zk.base.model.SysMenu">
-    update sys_menu
-    set menu_name = #{menuName,jdbcType=VARCHAR},
-      menu_url = #{menuUrl,jdbcType=VARCHAR},
-      parent_id = #{parentId,jdbcType=VARCHAR},
-      sort = #{sort,jdbcType=INTEGER},
-      menu_status = #{menuStatus,jdbcType=INTEGER},
-      create_user = #{createUser,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=DATE},
-      update_user = #{updateUser,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=DATE}
-    where menu_id = #{menuId,jdbcType=INTEGER}
-  </update>
+    <delete id="deleteSysMenuByMenuId" parameterType="java.lang.Integer">
+        delete from sys_menu
+        where menu_id = #{menuId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="addSysMenu" parameterType="com.zk.base.model.SysMenu">
+        insert into sys_menu (menu_id, menu_name, menu_url,
+          parent_id, sort, menu_status,
+          create_user, create_time, update_user,
+          update_time)
+        values (#{menuId,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR},
+          #{parentId,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{menuStatus,jdbcType=INTEGER},
+          #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateUser,jdbcType=VARCHAR},
+          #{updateTime,jdbcType=DATE})
+    </insert>
+
+    <update id="updateSysMenu" parameterType="com.zk.base.model.SysMenu">
+        update sys_menu
+        set menu_name = #{menuName,jdbcType=VARCHAR},
+          menu_url = #{menuUrl,jdbcType=VARCHAR},
+          parent_id = #{parentId,jdbcType=VARCHAR},
+          sort = #{sort,jdbcType=INTEGER},
+          menu_status = #{menuStatus,jdbcType=INTEGER},
+          create_user = #{createUser,jdbcType=VARCHAR},
+          create_time = #{createTime,jdbcType=DATE},
+          update_user = #{updateUser,jdbcType=VARCHAR},
+          update_time = #{updateTime,jdbcType=DATE}
+        where menu_id = #{menuId,jdbcType=INTEGER}
+    </update>
 
 </mapper>

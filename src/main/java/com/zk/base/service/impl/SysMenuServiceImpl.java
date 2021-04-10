@@ -1,8 +1,8 @@
 package com.zk.base.service.impl;
 
-import com.zk.base.mapper.SysUserMapper;
-import com.zk.base.model.SysUser;
-import com.zk.base.service.SysUserService;
+import com.zk.base.mapper.SysMenuMapper;
+import com.zk.base.model.SysMenu;
+import com.zk.base.service.SysMenuService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -10,42 +10,47 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class SysMenuServiceImpl implements SysUserService {
+public class SysMenuServiceImpl implements SysMenuService {
 
     @Resource
-    private SysUserMapper sysUserMapper;
+    private SysMenuMapper sysMenuMapper;
 
     @Override
-    public String saveSysUser(SysUser user) {
+    public String saveSysMenu(SysMenu menu) {
         Date now = new Date();
-        user.setCreateTime(now);
-        user.setUpdateTime(now);
-        sysUserMapper.addSysUser(user);
+        menu.setCreateTime(now);
+        menu.setUpdateTime(now);
+        sysMenuMapper.addSysMenu(menu);
         return "SUCCESS";
     }
 
     @Override
-    public String updateSysUser(SysUser user) {
+    public String updateSysMenu(SysMenu menu) {
         Date now = new Date();
-        user.setUpdateTime(now);
-        sysUserMapper.updateSysUser(user);
+        menu.setUpdateTime(now);
+        sysMenuMapper.updateSysMenu(menu);
         return "SUCCESS";
     }
 
     @Override
-    public String deleteSysUser(Integer userId) {
-        sysUserMapper.deleteSysUserByUserId(userId);
+    public String deleteSysMenu(Integer menuId) {
+        sysMenuMapper.deleteSysMenuByMenuId(menuId);
         return "SUCCESS";
     }
 
     @Override
-    public List<SysUser> getSysUserList() {
-        return sysUserMapper.selectSysUserList();
+    public List<SysMenu> getAllSysMenuList() {
+        return sysMenuMapper.selectSysMenuList();
     }
 
     @Override
-    public SysUser getSysUserInfo(Integer userId) {
-        return sysUserMapper.selectSysUserByUserId(userId);
+    public SysMenu getSysMenuInfo(Integer menuId) {
+        return sysMenuMapper.selectSysMenuByMenuId(menuId);
+    }
+
+    @Override
+    public List<SysMenu> getSysMenuListByPId() {
+        return null;
     }
 
 }

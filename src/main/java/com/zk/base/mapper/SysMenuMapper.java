@@ -2,13 +2,17 @@ package com.zk.base.mapper;
 
 import com.zk.base.model.SysMenu;
 
+import java.util.List;
+
 public interface SysMenuMapper {
 
-    int deleteMenuByMenuId(Integer menuId);
+    int deleteSysMenuByMenuId(Integer menuId);
 
-    int addMenu(SysMenu record);
+    int addSysMenu(SysMenu record);
 
-    int selectMenuList(SysMenu record);
+    List<SysMenu> selectSysMenuList();
 
-    int updateMenu(SysMenu record);
+    int updateSysMenu(SysMenu record);
+
+    SysMenu selectSysMenuByMenuId(Integer menuId);
 }
