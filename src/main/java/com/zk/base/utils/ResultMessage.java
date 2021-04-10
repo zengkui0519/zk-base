@@ -13,6 +13,14 @@ public class ResultMessage implements Serializable {
 
     private static final String RESPONSE_CODE_ERROR_DEFAULT = "E_SYS_000000";
 
+    private static final String SUCCESS_MSG = "操作成功";
+
+    private static final String FAIL_MSG = "操作失败";
+
+    private static final String SUCCESS = "SUCCESS";
+
+    private static final String FAIL = "FAIL";
+
     /**
      * 响应码
      */
@@ -29,6 +37,8 @@ public class ResultMessage implements Serializable {
     public static ResultMessage success() {
         ResultMessage result = new ResultMessage();
         result.setCode(ResultMessage.RESPONSE_CODE_SUCCESS_DEFAULT);
+        result.setData(ResultMessage.SUCCESS);
+        result.setMsg(ResultMessage.SUCCESS_MSG);
         return result;
     }
 
@@ -36,12 +46,15 @@ public class ResultMessage implements Serializable {
         ResultMessage result = new ResultMessage();
         result.setCode(ResultMessage.RESPONSE_CODE_SUCCESS_DEFAULT);
         result.setData(data);
+        result.setMsg(ResultMessage.SUCCESS_MSG);
         return result;
     }
 
     public static ResultMessage fail() {
         ResultMessage result = new ResultMessage();
         result.setCode(ResultMessage.RESPONSE_CODE_ERROR_DEFAULT);
+        result.setData(ResultMessage.FAIL);
+        result.setMsg(ResultMessage.FAIL_MSG);
         return result;
     }
 
@@ -49,6 +62,7 @@ public class ResultMessage implements Serializable {
         ResultMessage result = new ResultMessage();
         result.setCode(ResultMessage.RESPONSE_CODE_ERROR_DEFAULT);
         result.setData(data);
+        result.setMsg(ResultMessage.FAIL_MSG);
         return result;
     }
 

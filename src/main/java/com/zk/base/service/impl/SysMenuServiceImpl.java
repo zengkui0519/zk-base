@@ -3,6 +3,7 @@ package com.zk.base.service.impl;
 import com.zk.base.mapper.SysMenuMapper;
 import com.zk.base.model.SysMenu;
 import com.zk.base.service.SysMenuService;
+import com.zk.base.utils.SysConstants;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,7 +22,7 @@ public class SysMenuServiceImpl implements SysMenuService {
         menu.setCreateTime(now);
         menu.setUpdateTime(now);
         sysMenuMapper.addSysMenu(menu);
-        return "SUCCESS";
+        return SysConstants.Public.SUCCESS;
     }
 
     @Override
@@ -29,13 +30,13 @@ public class SysMenuServiceImpl implements SysMenuService {
         Date now = new Date();
         menu.setUpdateTime(now);
         sysMenuMapper.updateSysMenu(menu);
-        return "SUCCESS";
+        return SysConstants.Public.SUCCESS;
     }
 
     @Override
     public String deleteSysMenu(Integer menuId) {
         sysMenuMapper.deleteSysMenuByMenuId(menuId);
-        return "SUCCESS";
+        return SysConstants.Public.SUCCESS;
     }
 
     @Override

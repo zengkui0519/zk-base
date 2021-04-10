@@ -15,4 +15,10 @@ public interface SysUserService {
     List<SysUser> getSysUserList();
 
     SysUser getSysUserInfo(Integer userId);
+
+    boolean whetherTheUserCodeExist(String userCode);
+
+    boolean whetherTheUserTelExist(String userTel);
+
+    boolean whetherTheUserEmailExist(String userEmail);
 }

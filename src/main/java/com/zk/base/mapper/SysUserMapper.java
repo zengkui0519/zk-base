@@ -6,9 +6,15 @@ import java.util.List;
 
 public interface SysUserMapper {
 
-    int deleteSysUserByUserId(Integer userId);
+    boolean deleteSysUserByUserId(Integer userId);
 
     int addSysUser(SysUser record);
+
+    Object whetherTheUserCodeExist(String userCode);
+
+    Object whetherTheUserTelExist(String userTel);
+
+    Object whetherTheUserEmailExist(String userEmail);
 
     SysUser selectSysUserByUserId(Integer userId);
 

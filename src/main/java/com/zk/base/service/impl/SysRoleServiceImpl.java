@@ -3,6 +3,7 @@ package com.zk.base.service.impl;
 import com.zk.base.mapper.SysRoleMapper;
 import com.zk.base.model.SysRole;
 import com.zk.base.service.SysRoleService;
+import com.zk.base.utils.SysConstants;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,7 +22,7 @@ public class SysRoleServiceImpl implements SysRoleService {
         role.setCreateTime(now);
         role.setUpdateTime(now);
         sysRoleMapper.addSysRole(role);
-        return "SUCCESS";
+        return SysConstants.Public.SUCCESS;
     }
 
     @Override
@@ -29,13 +30,13 @@ public class SysRoleServiceImpl implements SysRoleService {
         Date now = new Date();
         role.setUpdateTime(now);
         sysRoleMapper.updateSysRole(role);
-        return "SUCCESS";
+        return SysConstants.Public.SUCCESS;
     }
 
     @Override
     public String deleteSysRole(Integer roleId) {
         sysRoleMapper.deleteSysRoleByRoleId(roleId);
-        return "SUCCESS";
+        return SysConstants.Public.SUCCESS;
     }
 
     @Override

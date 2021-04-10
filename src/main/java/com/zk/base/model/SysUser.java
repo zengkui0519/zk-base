@@ -44,9 +44,9 @@ public class SysUser {
     private String userEmail;
 
     /**
-     * 用户状态：0有效 1无效
+     * 用户状态：A有效 I无效
      */
-    private Integer userStatus;
+    private String userStatus;
 
     private String createUser;
 

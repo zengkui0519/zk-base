@@ -8,7 +8,7 @@
         <result column="user_password" jdbcType="VARCHAR" property="userPassword"/>
         <result column="user_tel" jdbcType="VARCHAR" property="userTel"/>
         <result column="user_email" jdbcType="VARCHAR" property="userEmail"/>
-        <result column="user_status" jdbcType="INTEGER" property="userStatus"/>
+        <result column="user_status" jdbcType="VARCHAR" property="userStatus"/>
         <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
         <result column="create_time" jdbcType="DATE" property="createTime"/>
         <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
@@ -20,23 +20,43 @@
     </sql>
 
     <select id="selectSysUserByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
+        select user_id, user_code, user_name, user_tel, user_email, user_status,
+            create_user, create_time, update_user, update_time
         from sys_user
         where user_id = #{userId,jdbcType=INTEGER}
     </select>
 
-    <select id="selectSysUserList" resultType="com.zk.base.model.SysUser">
-        select
-        <include refid="Base_Column_List"/>
+    <select id="selectSysUserList" resultMap="BaseResultMap">
+        select user_id, user_code, user_name, user_tel, user_email, user_status,
+            create_user, create_time, update_user, update_time
         from sys_user
+        where user_id != 1
+        and user_status = 'A'
         order by update_time desc
     </select>
 
-    <delete id="deleteSysUserByUserId" parameterType="java.lang.Integer">
-        delete from sys_user
+    <select id="whetherTheUserCodeExist" parameterType="String" resultType="java.lang.Object">
+        select 1 from sys_user
+        where user_code = #{userCode}
+        limit 1
+    </select>
+
+    <select id="whetherTheUserTelExist" parameterType="String" resultType="java.lang.Object">
+        select 1 from sys_user
+        where user_tel = #{userTel}
+        limit 1
+    </select>
+
+    <select id="whetherTheUserEmailExist" parameterType="String" resultType="java.lang.Object">
+        select 1 from sys_user
+        where user_email = #{userEmail}
+        limit 1
+    </select>
+
+    <update id="deleteSysUserByUserId" parameterType="java.lang.Integer">
+        update sys_user set user_status = 'I'
         where user_id = #{userId,jdbcType=INTEGER}
-    </delete>
+    </update>
 
     <insert id="addSysUser" parameterType="com.zk.base.model.SysUser">
         insert into sys_user (user_id, user_code, user_name,
@@ -57,11 +77,10 @@
           user_tel = #{userTel,jdbcType=VARCHAR},
           user_email = #{userEmail,jdbcType=VARCHAR},
           user_status = #{userStatus,jdbcType=INTEGER},
-          create_user = #{createUser,jdbcType=VARCHAR},
-          create_time = #{createTime,jdbcType=DATE},
           update_user = #{updateUser,jdbcType=VARCHAR},
           update_time = #{updateTime,jdbcType=DATE}
-        where user_id = #{userId,jdbcType=INTEGER}
+        where user_status = 'A'
+        and user_id = #{userId,jdbcType=INTEGER}
     </update>
 
 </mapper>
