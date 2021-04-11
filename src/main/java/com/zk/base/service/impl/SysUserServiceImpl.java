@@ -1,5 +1,7 @@
 package com.zk.base.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.zk.base.mapper.SysUserMapper;
 import com.zk.base.model.SysUser;
 import com.zk.base.service.SysUserService;
@@ -10,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
@@ -93,8 +97,14 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public List<SysUser> getSysUserList() {
-        return sysUserMapper.selectSysUserList();
+    public Map<String, Object> getSysUserList(int pageNum, int pageSize) {
+        Page<Object> page = PageHelper.startPage(pageNum, pageSize);
+        List<SysUser> dataList = sysUserMapper.selectSysUserList();
+
+        Map<String, Object> result = new HashMap<>();
+        result.put(SysConstants.Public.DATA_LIST, dataList);
+        result.put(SysConstants.Public.TOTAL_COUNT, page.getTotal());
+        return result;
     }
 
     @Override

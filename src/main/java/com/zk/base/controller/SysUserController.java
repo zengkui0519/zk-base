@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/sysUser")
@@ -72,8 +73,8 @@ public class SysUserController {
      * @date 2021/4/10 8:20 下午
      */
     @GetMapping("/getSysUserList")
-    public ResultMessage getSysUserList() {
-        List<SysUser> result = sysUserService.getSysUserList();
+    public ResultMessage getSysUserList(int pageNum, int pageSize) {
+        Map<String, Object> result = sysUserService.getSysUserList(pageNum, pageSize);
         return ResultMessage.success(result);
     }
 

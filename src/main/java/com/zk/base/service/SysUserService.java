@@ -3,6 +3,7 @@ package com.zk.base.service;
 import com.zk.base.model.SysUser;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SysUserService {
 
@@ -12,7 +13,7 @@ public interface SysUserService {
 
     String deleteSysUser(Integer userId);
 
-    List<SysUser> getSysUserList();
+    Map<String, Object> getSysUserList(int pageNum, int pageSize);
 
     SysUser getSysUserInfo(Integer userId);
 
