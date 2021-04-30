@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zk.base.mapper.SysUserRoleMapper">
+
+    <insert id="addSysUserRoleList" parameterType="com.zk.base.model.SysUserRole">
+        insert into sys_user_role
+        (user_id, role_id)
+        values
+        <foreach collection ="list" item="item" index= "index" separator =",">
+            (#{item.userId}, #{item.roleId})
+        </foreach >
+    </insert>
+
+    <delete id="deleteSysUserRoleList">
+        delete from sys_user_role where user_id = #{userId}
+    </delete>
+
+    <select id="selectRoleIdList" resultType="java.lang.Integer">
+        select role_id from sys_user_role where user_id = #{userId}
+    </select>
+
+</mapper>

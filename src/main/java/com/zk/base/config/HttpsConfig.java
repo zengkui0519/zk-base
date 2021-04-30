@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @description 禁用除GET/POST/HEAD之外的其他请求方式
  * @author zengkui
+ * @description 禁用除GET/POST/HEAD之外的其他请求方式
  * @date 2021/4/6 4:49 下午
  */
 @Configuration

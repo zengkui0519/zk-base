@@ -29,29 +29,41 @@
         where role_id = #{roleId}
     </select>
 
+    <select id="whetherTheRoleNameExist" resultType="java.lang.Object">
+        select 1 from sys_role
+        where role_name = #{roleName}
+        <if test="roleId != null and roleId != ''">
+            and role_id != #{roleId}
+        </if>
+        limit 1
+    </select>
+
     <delete id="deleteSysRoleByRoleId" parameterType="java.lang.Integer">
         delete from sys_role
         where role_id = #{roleId,jdbcType=INTEGER}
     </delete>
 
     <insert id="addSysRole" parameterType="com.zk.base.model.SysRole">
+        <selectKey resultType="int" keyProperty="roleId">
+            select last_insert_id()
+        </selectKey>
         insert into sys_role (role_id, role_name, description,
-          role_status, create_user, create_time,
-          update_user, update_time)
+        role_status, create_user, create_time,
+        update_user, update_time)
         values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
-          #{roleStatus,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE},
-          #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=DATE})
+        #{roleStatus,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE},
+        #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=DATE})
     </insert>
 
     <update id="updateSysRole" parameterType="com.zk.base.model.SysRole">
         update sys_role
         set role_name = #{roleName,jdbcType=VARCHAR},
-          description = #{description,jdbcType=VARCHAR},
-          role_status = #{roleStatus,jdbcType=INTEGER},
-          create_user = #{createUser,jdbcType=VARCHAR},
-          create_time = #{createTime,jdbcType=DATE},
-          update_user = #{updateUser,jdbcType=VARCHAR},
-          update_time = #{updateTime,jdbcType=DATE}
+        description = #{description,jdbcType=VARCHAR},
+        role_status = #{roleStatus,jdbcType=INTEGER},
+        create_user = #{createUser,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=DATE},
+        update_user = #{updateUser,jdbcType=VARCHAR},
+        update_time = #{updateTime,jdbcType=DATE}
         where role_id = #{roleId,jdbcType=INTEGER}
     </update>
 </mapper>

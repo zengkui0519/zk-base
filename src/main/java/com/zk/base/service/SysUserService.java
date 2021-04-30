@@ -1,25 +1,25 @@
 package com.zk.base.service;
 
-import com.zk.base.model.SysUser;
+import com.zk.base.model.request.UserReqParam;
+import com.zk.base.model.vo.SysUserVO;
 
-import java.util.List;
 import java.util.Map;
 
 public interface SysUserService {
 
-    String saveSysUser(SysUser user);
+    String saveSysUser(SysUserVO user);
 
-    String updateSysUser(SysUser user);
+    String updateSysUser(SysUserVO user);
 
     String deleteSysUser(Integer userId);
 
-    Map<String, Object> getSysUserList(int pageNum, int pageSize);
+    Map<String, Object> getSysUserList(UserReqParam reqParam);
 
-    SysUser getSysUserInfo(Integer userId);
+    SysUserVO getSysUserInfo(Integer userId);
 
-    boolean whetherTheUserCodeExist(String userCode);
+    boolean whetherTheUserCodeExist(Integer userId, String userCode);
 
-    boolean whetherTheUserTelExist(String userTel);
+    boolean whetherTheUserTelExist(Integer userId, String userTel);
 
-    boolean whetherTheUserEmailExist(String userEmail);
+    boolean whetherTheUserEmailExist(Integer userId, String userEmail);
 }

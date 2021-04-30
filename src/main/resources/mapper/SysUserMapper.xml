@@ -14,42 +14,79 @@
         <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
         <result column="update_time" jdbcType="DATE" property="updateTime"/>
     </resultMap>
+
+    <resultMap id="SysUserVOMap" type="com.zk.base.model.vo.SysUserVO">
+        <id column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="user_code" jdbcType="VARCHAR" property="userCode"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_password" jdbcType="VARCHAR" property="userPassword"/>
+        <result column="user_tel" jdbcType="VARCHAR" property="userTel"/>
+        <result column="user_email" jdbcType="VARCHAR" property="userEmail"/>
+        <result column="user_status" jdbcType="VARCHAR" property="userStatus"/>
+        <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
+        <result column="create_time" jdbcType="DATE" property="createTime"/>
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
+        <result column="update_time" jdbcType="DATE" property="updateTime"/>
+
+        <collection property="roleIdList" ofType="java.lang.Integer"
+                    select="com.zk.base.mapper.SysUserRoleMapper.selectRoleIdList" column="user_id">
+        </collection>
+    </resultMap>
+
     <sql id="Base_Column_List">
         user_id, user_code, user_name, user_password, user_tel, user_email, user_status,
         create_user, create_time, update_user, update_time
     </sql>
 
-    <select id="selectSysUserByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectSysUserByUserId" parameterType="java.lang.Integer" resultMap="SysUserVOMap">
         select user_id, user_code, user_name, user_tel, user_email, user_status,
-            create_user, create_time, update_user, update_time
+        create_user, create_time, update_user, update_time
         from sys_user
         where user_id = #{userId,jdbcType=INTEGER}
     </select>
 
     <select id="selectSysUserList" resultMap="BaseResultMap">
         select user_id, user_code, user_name, user_tel, user_email, user_status,
-            create_user, create_time, update_user, update_time
+        create_user, create_time, update_user, update_time
         from sys_user
         where user_id != 1
         and user_status = 'A'
+        <if test="userCode != null and userCode != ''">
+            and user_code = #{userCode}
+        </if>
+        <if test="userName != null and userName != ''">
+            and user_name like concat(concat('%',#{userName}),'%')
+        </if>
+        <if test="userTel != null and userTel != ''">
+            and user_tel like concat(concat('%',#{userTel}),'%')
+        </if>
         order by update_time desc
     </select>
 
-    <select id="whetherTheUserCodeExist" parameterType="String" resultType="java.lang.Object">
+    <select id="whetherTheUserCodeExist" resultType="java.lang.Object">
         select 1 from sys_user
         where user_code = #{userCode}
+        <if test="userId != null and userId != ''">
+            and user_id != #{userId}
+        </if>
         limit 1
     </select>
 
-    <select id="whetherTheUserTelExist" parameterType="String" resultType="java.lang.Object">
+    <select id="whetherTheUserTelExist" resultType="java.lang.Object">
         select 1 from sys_user
         where user_tel = #{userTel}
+        <if test="userId != null and userId != ''">
+            and user_id != #{userId}
+        </if>
         limit 1
     </select>
 
-    <select id="whetherTheUserEmailExist" parameterType="String" resultType="java.lang.Object">
+    <select id="whetherTheUserEmailExist" resultType="java.lang.Object">
         select 1 from sys_user
         where user_email = #{userEmail}
+        <if test="userId != null and userId != ''">
+            and user_id != #{userId}
+        </if>
         limit 1
     </select>
 
@@ -59,26 +96,29 @@
     </update>
 
     <insert id="addSysUser" parameterType="com.zk.base.model.SysUser">
+        <selectKey resultType="int" keyProperty="userId">
+            select last_insert_id()
+        </selectKey>
         insert into sys_user (user_id, user_code, user_name,
-          user_password, user_tel, user_email,
-          user_status, create_user, create_time,
-          update_user, update_time)
+        user_password, user_tel, user_email,
+        user_status, create_user, create_time,
+        update_user, update_time)
         values (#{userId,jdbcType=INTEGER}, #{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
-          #{userPassword,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR},
-          #{userStatus,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE},
-          #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=DATE})
+        #{userPassword,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR},
+        #{userStatus,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE},
+        #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=DATE})
     </insert>
 
     <update id="updateSysUser" parameterType="com.zk.base.model.SysUser">
         update sys_user
         set user_code = #{userCode,jdbcType=VARCHAR},
-          user_name = #{userName,jdbcType=VARCHAR},
-          user_password = #{userPassword,jdbcType=VARCHAR},
-          user_tel = #{userTel,jdbcType=VARCHAR},
-          user_email = #{userEmail,jdbcType=VARCHAR},
-          user_status = #{userStatus,jdbcType=INTEGER},
-          update_user = #{updateUser,jdbcType=VARCHAR},
-          update_time = #{updateTime,jdbcType=DATE}
+        user_name = #{userName,jdbcType=VARCHAR},
+        user_password = #{userPassword,jdbcType=VARCHAR},
+        user_tel = #{userTel,jdbcType=VARCHAR},
+        user_email = #{userEmail,jdbcType=VARCHAR},
+        user_status = #{userStatus,jdbcType=INTEGER},
+        update_user = #{updateUser,jdbcType=VARCHAR},
+        update_time = #{updateTime,jdbcType=DATE}
         where user_status = 'A'
         and user_id = #{userId,jdbcType=INTEGER}
     </update>

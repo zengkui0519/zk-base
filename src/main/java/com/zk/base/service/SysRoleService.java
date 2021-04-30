@@ -1,18 +1,22 @@
 package com.zk.base.service;
 
 import com.zk.base.model.SysRole;
+import com.zk.base.model.vo.SysRoleVO;
 
-import java.util.List;
+import java.util.Map;
 
 public interface SysRoleService {
 
-    String saveSysRole(SysRole role);
+    String saveSysRole(SysRoleVO role);
 
-    String updateSysRole(SysRole role);
+    String updateSysRole(SysRoleVO role);
 
     String deleteSysRole(Integer roleId);
 
-    List<SysRole> getAllSysRoleList();
+    Map<String, Object> getAllSysRoleList(int pageNum, int pageSize);
 
     SysRole getSysRoleInfo(Integer roleId);
+
+    boolean whetherTheRoleNameExist(Integer roleId, String roleName);
+
 }

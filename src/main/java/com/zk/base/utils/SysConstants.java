@@ -1,8 +1,8 @@
 package com.zk.base.utils;
 
 /**
- * @description 系统常量类（跟业务没有关联）
  * @author zengkui
+ * @description 系统常量类（跟业务没有关联）
  * @date 2021/4/11 12:04 上午
  */
 public interface SysConstants {

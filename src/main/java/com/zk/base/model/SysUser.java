@@ -7,8 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 /**
- * @description 系统用户表
  * @author ZengKui
+ * @description 系统用户表
  * @date 2021/03/16 13:58
  */
 @Data

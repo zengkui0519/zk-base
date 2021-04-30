@@ -16,9 +16,9 @@ public class SysMenuController {
     private SysMenuService sysMenuService;
 
     /**
-     * @description 新增菜单
      * @param menu
      * @return com.zk.base.utils.ResultMessage
+     * @description 新增菜单
      * @author zengkui
      * @date 2021/4/10 8:31 下午
      */
@@ -29,9 +29,9 @@ public class SysMenuController {
     }
 
     /**
-     * @description 更新菜单
      * @param menu
      * @return com.zk.base.utils.ResultMessage
+     * @description 更新菜单
      * @author zengkui
      * @date 2021/4/10 8:31 下午
      */
@@ -42,9 +42,9 @@ public class SysMenuController {
     }
 
     /**
-     * @description 删除菜单
      * @param menuId
      * @return com.zk.base.utils.ResultMessage
+     * @description 删除菜单
      * @author zengkui
      * @date 2021/4/10 8:31 下午
      */
@@ -55,9 +55,9 @@ public class SysMenuController {
     }
 
     /**
-     * @description 获取所有菜单（查询树结构）,分配角色菜单时使用
      * @param
      * @return com.zk.base.utils.ResultMessage
+     * @description 获取所有菜单（查询树结构）,分配角色菜单时使用
      * @author zengkui
      * @date 2021/4/10 4:55 下午
      */
@@ -68,9 +68,9 @@ public class SysMenuController {
     }
 
     /**
-     * @description 通过父节点id查询下一级子菜单列表
      * @param
      * @return com.zk.base.utils.ResultMessage
+     * @description 通过父节点id查询下一级子菜单列表
      * @author zengkui
      * @date 2021/4/10 4:59 下午
      */
@@ -81,9 +81,9 @@ public class SysMenuController {
     }
 
     /**
-     * @description 获取菜单详情
      * @param menuId
      * @return com.zk.base.utils.ResultMessage
+     * @description 获取菜单详情
      * @author zengkui
      * @date 2021/4/10 8:32 下午
      */
